@@ -2,12 +2,23 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
-import {useGetRandomNameQuery} from './services/api';
+import {api} from './services/api';
+import {useTypedDispatch, useTypedSelector} from './storeHooks';
 
 const App = () => {
-  const {data, isLoading} = useGetRandomNameQuery(1);
+  const dispatch = useTypedDispatch();
+
+  // Manual dispatch and selector as a workaround to avoid the jest warning
+  // message while testing the components that use the useQuery hook.
+  // Warning: "Jest did not exit one second after the test run has completed."
+  const selectRandomName = api.endpoints.getRandomName.select(2);
+  const {data, isLoading} = useTypedSelector(selectRandomName);
+
+  useEffect(() => {
+    dispatch(api.endpoints.getRandomName.initiate(2));
+  }, [dispatch]);
 
   return (
     <SafeAreaView>
