@@ -24,12 +24,11 @@ These instructions will get you a copy of the project up and running on your loc
    `npm install`
 - or with yarn  
    `yarn install`
-3. Create env file under the root directory of the project ([see example](#env-file-example)):  
-   `.env`
+3. Create `.env` file under the root directory of the project ([see example](#env-file-example))
 4. Start or plug your virtual or physical device
 5. Start React Native  
    `yarn start`
-6. Start App  
+6. Start app  
    `yarn android`
 
 ### .env file example:
