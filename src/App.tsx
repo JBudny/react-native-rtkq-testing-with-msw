@@ -14,7 +14,7 @@ const App = () => {
   // message while testing the components that use the useQuery hook.
   // Warning: "Jest did not exit one second after the test run has completed."
   const selectRandomName = api.endpoints.getRandomName.select(2);
-  const {data, isLoading} = useTypedSelector(selectRandomName);
+  const {data, isLoading, isError} = useTypedSelector(selectRandomName);
 
   useEffect(() => {
     dispatch(api.endpoints.getRandomName.initiate(2));
@@ -28,6 +28,7 @@ const App = () => {
       ) : (
         data && data.map(name => <Text key={name.id}>{name.first_name}</Text>)
       )}
+      {isError && <Text>Error</Text>}
     </SafeAreaView>
   );
 };
