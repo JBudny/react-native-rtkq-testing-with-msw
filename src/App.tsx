@@ -17,7 +17,9 @@ const App = () => {
   const {data, isLoading, isError} = useTypedSelector(selectRandomName);
 
   useEffect(() => {
-    dispatch(api.endpoints.getRandomName.initiate(2));
+    const result = dispatch(api.endpoints.getRandomName.initiate(2));
+
+    return result.unsubscribe
   }, [dispatch]);
 
   return (
