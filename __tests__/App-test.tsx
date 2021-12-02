@@ -14,6 +14,14 @@ import {rest} from 'msw';
 const {API_BASE_URL} = Config;
 const mockedName = mockedResponse[0].first_name;
 
+beforeEach(() => {
+  jest.useFakeTimers('legacy');
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
+
 test("App component should render 'Loading...' text while waiting for api response", () => {
   const {getByText} = renderWithProviders(<App />);
   const loadingText = getByText('Loading...');
